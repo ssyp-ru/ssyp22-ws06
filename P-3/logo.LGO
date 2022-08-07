@@ -1,0 +1,71 @@
+to logo
+setpensize [3 3]
+setpencolor [0 255 0]
+repeat 12 [ellipse 100 200 rt 5]
+setpencolor [0 0 255]
+repeat 24 [ellipse 100 200 rt 5]
+setpencolor [255 223 0]
+circle 98
+ pu setxy 55 0 pd
+repeat 360 [fd 1 rt 1]
+pu setxy 0 0 pd
+setfloodcolor [255 223 0]
+fill
+end
+
+to new_triangle :n :a
+if :n<1 [stop] 
+rt 30 
+fd :a
+rt 90
+new_triangle :n-1 :a/2
+rt 30
+fd :a
+rt 90
+new_triangle :n-1 :a/2
+rt 30
+fd :a
+rt 90
+new_triangle :n-1 :a/2
+setfloodcolor [255 0 0]
+pu rt 60 fd 15 fill rt 180 fd 15 rt 120 pd
+end
+
+to recursive_triangle :n :a
+pd 
+setfloodcolor [0 0 255]
+if :n<1 [stop] 
+rt 30 
+fd :a
+rt 120
+fd :a
+rt 120
+fd :a
+rt 90
+recursive_triangle :n-1 :a/2
+rt 30 
+fd :a/2
+rt 120
+fd :a/2
+rt 120
+fd :a/2
+pu
+setxy :n/2 :n/2
+fill
+end
+
+to triangle :n
+pd 
+setfloodcolor [0 0 255]
+rt 30 
+fd :n
+rt 120
+fd :n
+rt 120
+fd :n
+pu
+setxy :n/2 :n/2
+fill
+end
+
+Make ":m 24

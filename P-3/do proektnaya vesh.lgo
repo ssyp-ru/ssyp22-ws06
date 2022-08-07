@@ -1,0 +1,14 @@
+﻿это main
+make "turtle pos
+make "click mousepos
+make "y random -451 
+if :y > 450 [make "y random -451]
+print :y
+make "x random -451 
+if :x > 450 [make "y random -451]
+print :x
+
+конец
+
+пусть "click [-500 497]
+пусть "turtle [0 0]

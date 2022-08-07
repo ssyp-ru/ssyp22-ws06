@@ -1,0 +1,34 @@
+to Hello
+mouseon [rt 90 label "Hello lt 90] [] [] [] [setpos mousepos] wait 600 mouseoff
+end
+
+to Hello_circle
+circle 50
+pu fd 200 pd 
+circle 50
+setfloodcolor [255 0 0]
+mouseon [setfloodcolor [255 0 0] fill] [] [setfloodcolor [0 255 0] fill] [] [setpos mousepos] wait 600 mouseoff
+end
+
+to hoil
+local "mypixel
+make "mypixel pixel
+ht lt 90 pu fd 1
+if not pixel = :mypixel [bk 1 rt 90 st op "true]
+bk 1 rt 90 st op "false
+end
+
+ to sircle.2 
+pu fd 50 pd  
+circle 25
+pu fd 50 pd  
+circle 25
+pu fd 50 pd 
+circle 25
+pu fd 50 pd  
+setfloodcolor [255 0 0]
+mouseon [setfloodcolor [255 0 0] fill] [] [setfloodcolor [0 255 0] fill] [] [ pu setpos mousepos] wait 1000 mouseoff
+IF KEYBOARDVALUE = ASCII "T
+end
+
+пусть "a 300

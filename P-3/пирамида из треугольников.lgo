@@ -1,0 +1,191 @@
+﻿to e
+pu setpencolor "pink lt 90 fd 450 rt 90 fd 300 rt 90 pd
+end
+
+to f
+repeat 2 [fd 100 rt 90 fd 150 rt 90]pu fd 200 pd
+конец
+
+to fu :n
+ repeat :n [circle 15 rt 90 pu  fd 50 lt 90 pd ]
+end
+
+to logo
+setpensize [3 3]
+setpencolor [0 255 0]
+repeat 12 [ellipse 100 200 rt 5]
+setpencolor [0 0 255]
+repeat 24 [ellipse 100 200 rt 5]
+setpencolor [255 223 0]
+circle 98
+ pu setxy 55 0 pd
+repeat 360 [fd 1 rt 1]
+pu setxy 0 0 pd
+setfloodcolor [255 223 0]
+fill
+end
+
+это main
+make "turtle pos
+make "click mousepos
+make "y random -451 
+if :y > 450 [make "y random -451]
+print :y
+make "x random -451 
+if :x > 450 [make "y random -451]
+print :x
+
+конец
+
+to new_triangle :n :a
+if :n<1 [stop] 
+rt 30 
+fd :a
+rt 90
+new_triangle :n-1 :a/2
+rt 30
+fd :a
+rt 90
+new_triangle :n-1 :a/2
+rt 30
+fd :a
+rt 90
+new_triangle :n-1 :a/2
+setfloodcolor [255 0 0]
+pu rt 60 fd 15 fill rt 180 fd 15 rt 120 pd
+end
+
+to q
+circle  15 pu rt 90 fd 50 pd lt 90 circle 15 rt 90 pu fd 50 lt 90 pd circle  15 
+конец
+
+to recursive_triangle :n :a
+pd 
+setfloodcolor [0 0 255]
+if :n<1 [stop] 
+rt 30 
+fd :a
+rt 120
+fd :a
+rt 120
+fd :a
+rt 90
+recursive_triangle :n-1 :a/2
+rt 30 
+fd :a/2
+rt 120
+fd :a/2
+rt 120
+fd :a/2
+pu
+setxy :n/2 :n/2
+fill
+end
+
+to sircle
+repeat 360 [fd 1 rt 1]
+end
+
+to triangle :n
+pd 
+setfloodcolor [0 0 255]
+rt 30 
+fd :n
+rt 120
+fd :n
+rt 120
+fd :n
+pu
+setxy :n/2 :n/2
+fill
+end
+
+to w :n :a
+	if :n < 2 [rt 45 fd :a rt 90 fd :a rt 135 fd :a * sqrt 2 rt 90   stop] 
+	w :n-1 :a/2
+	rt 45 fd :a / 2 lt 45 w :n-1 :a/2 rt 135 fd :a / 2 lt 135 w :n-1 :a/2 
+	lt 90 fd :a /  sqrt 2 rt 90 
+
+конец
+
+to карточка 
+ repeat 1 [fd 100 rt 90 fd 150 rt 90]
+
+пусть "a 0.00725657159014814
+
+
+пусть ":m 24
+пусть "click [-500 438]
+пусть "turtle [0 0]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
