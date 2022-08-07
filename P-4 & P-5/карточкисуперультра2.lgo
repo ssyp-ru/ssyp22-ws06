@@ -1,0 +1,135 @@
+﻿to card
+pu
+fd :b/2
+rt 90
+pd
+fd :c/2
+rt 90
+fd :b
+rt 90
+fd :c
+rt 90
+fd :b
+rt 90
+fd :c/2
+pu
+rt 90
+fd :b/2
+rt 180
+end
+
+to check :mouse
+make "x 475 + item 1 :mouse
+ifelse :x > 900 [output (list 0 0) stop] []
+ifelse :x < 50 [output (list 0 0) stop] []
+make "y -550 + item 2 :mouse
+make "col 0
+make "raw 0
+do.while [make "x :x-50 if :x < 0 [output (list 0 0) stop] make "col :col + 1 make "x :x-100] [:x > 0]
+do.while [make "y :y+100 if :y > 0 [output (list 0 0) stop] make "raw :raw + 1 make "y :y+150] [:y < 0]
+output (list :raw :col)
+end
+
+to color :num
+if :num = 1 [setfloodcolor "red stop]
+if :num = 2 [setfloodcolor "green stop]
+if :num = 3 [setfloodcolor "blue stop]
+if :num = 4 [setfloodcolor "purple stop]
+if :num = 5 [setfloodcolor "pink stop]
+if :num = 6 [setfloodcolor "yellow stop]
+if :num = 7 [setfloodcolor "orange stop]
+if :num = 8 [setfloodcolor "brown stop]
+if :num = 9 [setfloodcolor [260 210 210 ] stop]
+if :num = 10 [setfloodcolor [290 200 210] stop]
+if :num = 11 [setfloodcolor [200 280 200] stop]
+if :num = 12 [setfloodcolor [200 220 220] stop]
+end
+
+to delkart :list
+pu fd :b / 2
+teleport item 1 :list item 2 :list
+setfloodcolor "black
+fill
+setfloodcolor "white 
+fill
+end
+
+to main
+cs
+карточки
+make "f 0
+make "tmp (list 0 0)
+make "d (list 0 0)
+make "array {{1 6 2 4 1 2}@0 {6 4 5 5 3 7}@0 {8 3 7 8 10 9}@0 {11 12 10 11 9 12}@0}@0
+mouseon [make "returned onclick :array :d :f :tmp make "array item 1 :returned make "d item 2 :returned make "f item 3 :returned make "tmp item 4 :returned] [] [] [cs mouseoff] []
+end
+
+to nocard :one :two :array 
+make "two_val item -1 + item 2 :two item -1 + item 1 :two :array
+make "one_val item -1 + item 2 :one item -1 + item 1 :one :array
+if :one_val <> :two_val [setfloodcolor "white ~
+teleport item 1 :one item 2 :one ~
+fill ~
+teleport item 1 :two item 2 :two ~
+fill ~
+output :array ~
+stop]
+setitem -1 + item 2 :one item -1 + item 1 :one :array 0 
+setitem -1 + item 2 :two item -1 + item 1 :two :array 0 
+delkart :one 
+delkart :two
+output :array
+
+end
+
+to onclick :array :d :f :tmp
+if :f = 2 [make "array nocard :tmp :d :array make "f 0 output (list :array :d :f :tmp) stop]
+make "tmp check mousepos
+if 0 = item 1 :tmp [output (list :array :d :f :tmp) stop]
+if and (item 1 :d) = item 1 :tmp (item 2 :d) = item 2 :tmp ~
+	[output (list :array :d :f :tmp) stop] 
+if  0 = item -1 + item 2 :tmp item -1 + item 1 :tmp :array ~
+	[output (list :array :d :f :tmp) stop] 
+ifelse :f = 0 [make "f 1 open :tmp :array make "d :tmp] [make "f 2 open :tmp :array]
+output (list :array :d :f :tmp)
+end
+
+to open :list :array 
+color item -1 + item 2 :list item -1 + item 1 :list :array
+teleport item 1 :list item 2 :list
+fill
+end
+
+to raw :b :n
+repeat :n [card rt 90 fd :b lt 90]
+lt 90  fd :n*:b rt 90
+end
+
+to teleport :raw :col
+make "x (:col - 1) * :b - 375
+setxy -375 375
+make "y -(:raw - 1) * 250 + 375
+setxy :x :y
+end
+
+to карточки
+pu
+setxy -375 375
+repeat :a [raw :b :n bk :b+:c]
+end
+
+Make "a 4
+Make "array {{0 0 0 0 0 0}@0 {0 0 0 0 0 0}@0 {8 0 0 8 0 0}@0 {0 0 0 0 0 0}@0}@0
+Make "b 150
+Make "c 100
+Make "col 3
+Make "d [0 0]
+Make "f 0
+Make "n 6
+Make "one_val 3
+Make "raw 4
+Make "returned [{{0 0 0 0 0 0}@0 {0 0 0 0 0 0}@0 {8 0 0 8 0 0}@0 {0 0 0 0 0 0}@0}@0 [0 0] 0 [4 3]]
+Make "tmp [4 3]
+Make "two_val 3
+Make "x -46
+Make "y 143

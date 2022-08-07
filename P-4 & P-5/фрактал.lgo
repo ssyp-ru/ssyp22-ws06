@@ -1,0 +1,18 @@
+﻿to exemplar :a
+ifelse :a < 10 [repeat 4 [fd :a rt 90]] [repeat 4 [exemplar :a/6 fd :a rt 90]]
+end
+
+to звезда
+повтори 5 [пр 144 вп 100]
+end
+
+to фрактал :n
+ifelse :n < 10 [repeat 360 [rt 1 fd :n/10]] [repeat 4 [фрактал :n/3 repeat 90 [rt 1 fd :n/10]]]
+if :n < 10 [pu rt 90 fd 10 setfloodcolor "yellow fill bk 10 pd lt 90 stop]
+if :n < 30 [pu rt 90 fd 50 setfloodcolor "orange fill bk 50 pd lt 90 stop]
+if :n < 90 [pu rt 90 fd 200 setfloodcolor "red fill bk 200 pd lt 90 stop]
+if :n < 270 [pu lt 90 fd 10 setfloodcolor "white fill bk 10 pd rt 90 stop]
+end
+
+Make "l 360
+Make "r 57.2957795130823
