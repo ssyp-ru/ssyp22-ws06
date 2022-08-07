@@ -1,0 +1,18 @@
+﻿это L :u
+if :u < 1 [Lblock stop]
+lt 90 R :u - 1  lt 90 fd 30 L :u - 1 rt 90 fd 30 rt 90 L :u - 1 fd 30 lt 90 R :u - 1 lt 90
+конец
+
+это Lblock
+fd 30 lt 90 fd 30 lt 90 fd 30
+конец
+
+это R :u
+if :u < 1 [Rblock stop]
+rt 90 L :u - 1 rt 90 fd 30 R :u - 1 lt 90 fd 30 lt 90 R :u - 1 fd 30 rt 90 L :u - 1 rt 90
+конец
+
+это Rblock
+fd 30 rt 90 fd 30 rt 90 fd 30
+конец
+

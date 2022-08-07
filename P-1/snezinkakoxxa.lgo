@@ -1,0 +1,17 @@
+﻿это BBOD
+label " вводить : cs snezinkakoxxa 8 0.5
+конец
+
+это line :y
+fd :y
+конец
+
+это snezinkakoxxa :o :y
+snow :o - 1 :y rt 120 snow :o - 1 :y rt 120 snow :o - 1 :y 
+конец
+
+это snow :o :y
+if :o < 2 [line :y stop]
+snow :o - 1 :y lt 60 snow :o - 1 :y rt 120 snow :o - 1 :y lt 60 snow :o - 1 :y
+конец
+

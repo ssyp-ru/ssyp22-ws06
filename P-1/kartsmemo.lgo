@@ -1,0 +1,64 @@
+﻿это ch :a
+make "x 455.5 + item 1 :a
+make "y 347.5 + item 2 :a
+make "we 0
+make "stolbec 0
+make "stroka 0
+do.while [make "x :x - 32.5 if :x < 0 [output (list 0 0) stop] make "x :x - 65 make "stolbec :stolbec + 1] [:x > 0]
+do.while [make "y :y - 32.5 if :y < 0 [output (list 0 0) stop] make "y :y - 100 make "stroka :stroka + 1][:y > 0]
+show (list :stolbec :stroka )
+teleport (list :stolbec :stroka)
+output (list :stolbec :stroka)
+конец
+
+to checkotkr
+make "kot item :stroka item :stolbec :arrayotkr
+if :kot = 0 [stop]
+if :kot = 1 [reaction]
+end
+
+это kart
+setpensize 2 setpc "white setfloodcolor "red lt 90 pu fd 32.5 pd rt 90 fd 50 rt 90 fd 65 rt 90 fd 100 rt 90 fd 65 rt 90 fd 50 rt 90 pu fd 32.5 lt 90 fill 
+конец
+
+это karts
+kartss repeat 2 [pu bk 132.5 pd kartss] repeat 2 [pu fd 116 pd]
+pu fd 165 pd kartss pu fd 132.5 pd kartss pu fd 132.5 pd kartss repeat 3 [pu fd 116 pd] pu home pd
+конец
+
+это kartss
+repeat 5 [kart lt 90 pu fd 97.5 rt 90 pd] repeat 5 [pu lt 90 pu bk 97.5 rt 90 pd] repeat 5 [kart rt 90 pu fd 97.5 lt 90 pd] repeat 5 [pu rt 90 pu bk 97.5 lt 90 pd]
+конец
+
+это main
+cs
+НОВЦВЕТЭКРАНА [0 0 90]
+karts
+make "arrayotkr {{1 1 1 1 1 1 1 1 1}{1 1 1 1 1 1 1 1 1}{1 1 1 1 1 1 1 1 1}{1 1 1 1 1 1 1 1 1}{1 1 1 1 1 1 1 1 1}{1 1 1 1 1 1 1 1 1}}
+mouseon [make "a mousepos make "tmp ch :a print :tmp checkotkr setitem :stroka item :stolbec :arrayotkr "0] [] [] [mouseoff stop] []
+конец
+
+это perkart
+setfloodcolor "white lt 90 pu fd 32.5 pd rt 90 fd 50 rt 90 fd 65 rt 90 fd 100 rt 90 fd 65 rt 90 fd 50 rt 90 pu fd 32.5 lt 90 fill
+конец
+
+to reaction
+perkart 
+end
+
+to teleport :coord
+pu setxy 512.5 + 97.5 * item 1 :coord 602 + 132.5 * item 2 :coord pd
+end
+
+пусть "a [423 87]
+пусть "arrayotkr {{0 0 1 1 1 0 1 1 1} {0 0 1 1 1 1 1 1 1} {1 1 1 1 1 1 1 1 1} {1 1 1 1 1 1 1 1 1} {1 1 0 1 1 1 1 1 1} {1 1 0 1 1 1 1 1 1}}
+пусть "h "hello
+пусть "kot 0
+пусть "stolbec 9
+пусть "stroka 0
+пусть "tmp [0 0]
+пусть "we 0
+пусть "x -31.5
+пусть "y 434.5
+пусть "столбец 1
+пусть "строка 1
