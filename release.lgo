@@ -1,0 +1,261 @@
+﻿to card :jo
+ifelse :jo = 1 [setpencolor "white] [setpc [134 67 220]]
+pu
+fd 75
+rt 90
+fd 50
+rt 90
+pd
+repeat 2 [fd 150 rt 90 fd 100 rt 90]
+lt 45
+rt 90
+pu
+fd 15
+setfloodcolor [210 0 0] 
+fill
+lt 180
+fd 15
+rt 135
+pu
+fd 75
+rt 90
+fd 50
+rt 90
+pd
+end
+
+to check :a
+make "ynum item 2 :a
+make "ynum :ynum - 550
+if :ynum < -1050 [output (list 0 0) stop]
+make "stolb 0
+do.while [make "ynum :ynum+100 if :ynum > 0 [output (list 0 0) stop] make "ynum :ynum+150 make "stolb :stolb + 1] [:ynum < 0]
+make "xnum item 1 :a
+make "xnum :xnum + 475
+if :xnum > 975 [output (list 0 0) stop]
+make "rad 0  
+do.while [make "xnum :xnum-50 if :xnum < 0 [output (list 0 0) stop] make "xnum :xnum-100 make "rad :rad + 1] [:xnum > 0]
+tp2 :tmp ; TODO: убрать отсюда
+output (List :rad :stolb)
+end
+
+to coh :a :n
+ifelse :n < 2 [fd :a] [coh :a/3 :n-1 lt 60 coh :a/3 :n-1 rt 120 coh :a/3 :n-1 lt 60 coh :a/3 :n-1]
+end
+
+to del :tmp 
+tp2 :tmp
+setpensize 110
+setpc [35 113 54]
+bk 75
+pd
+fd 150
+pu
+bk 75
+setpensize 4
+end
+
+to fin
+cs
+setfc [35 113 54]
+fill
+rt 90
+setpc [210 0 0]
+SETLABELFONT [[Calibri] 48 24 0 400 0 0 0 0 3 2 1 18]
+label "FIN
+lt 90
+end
+
+to hide :tmp
+tp2 :tmp
+setpensize 110
+setpc [35 113 54]
+bk 75
+pd
+fd 150
+pu
+bk 75
+setpensize 4
+card 1
+end
+
+to main
+cs
+ht
+pole
+make "array massiv
+make "count 0
+make "list (List 0 0)
+mouseon [make "returned onclick :array :count :list make "array item 1 :returned make "count item 2 :returned make "list item 3 :returned] [] [] [] []
+end
+
+to massiv
+make "array {{0 0 0 0 0 0}@0 {0 0 0 0 0 0}@0 {0 0 0 0 0 0}@0 {0 0 0 0 0 0}@0}@0
+make "k 1
+while [:k < 13] [repeat 2 [~
+make "i random 4 ~
+make "j random 6 ~
+while [0 < item :j item :i :array] [ifelse :j = 5 [make "j 0 ifelse :i = 3 [make "i 0] [make "i :i + 1]] [make "j :j + 1]] ~
+setitem :j item :i :array :k] make "k :k + 1]
+output :array
+end
+
+to okras
+setfc "white fill setfc [210 0 0] fill
+end
+
+to onclick :array :count :list
+make "tmp check mousepos
+if 0 = item 1 :tmp [output (list :array :count :list) stop]
+if 0 = item -1 + item 1 :tmp item -1 + item 2 :tmp :array [output (list :array :count :list) stop ]
+ifelse :count = 1 [if unk :list :tmp [open :array :tmp :list wait 70 make "array yaichko :array :tmp :list ~
+		make "count 0]] ~
+	[videl :tmp make "list :tmp make "count 1]
+output (list :array :count :list)
+end
+
+to open :array :tmp :list
+tp2 :tmp
+setpencolor [211 0 0]
+pu
+fd 75
+rt 90
+fd 50
+rt 90
+pd
+repeat 2 [fd 150 rt 90 fd 100 rt 90]
+lt 45
+rt 90
+pu
+fd 15
+setfloodcolor "white 
+fill
+lt 180
+fd 15
+rt 135
+pu
+fd 75
+rt 90
+fd 50
+rt 90
+pd
+picture item -1 + item 1 :tmp item -1 + item 2 :tmp :array 
+tp2 :list
+setpencolor [211 0 0]
+pu
+fd 75
+rt 90
+fd 50
+rt 90
+pd
+repeat 2 [fd 150 rt 90 fd 100 rt 90]
+lt 45
+rt 90
+pu
+fd 15
+setfloodcolor "white 
+fill
+lt 180
+fd 15
+rt 135
+pu
+fd 75
+rt 90
+fd 50
+rt 90
+pd
+picture item -1 + item 1 :list item -1 + item 2 :list :array 
+end
+
+to picture :num
+if :num = 1 [pu fd 25 pd repeat 180 [fd 0.25 lt 1] repeat 60 [fd 1 rt -1] lt 60 repeat 60 [fd 1 lt 1] repeat 180 [fd 0.25 rt -1] rt 180 pu bk 25 pd stop]
+if :num = 2 [rt 180 pu fd 25 pd repeat 180 [fd 0.25 lt 1] repeat 60 [fd 1 rt -1] lt 60 repeat 60 [fd 1 lt 1] repeat 180 [fd 0.25 rt -1] ~
+		rt 180 pu bk 25 pd rt 180 stop]
+if :num = 3 [lt 90 pu fd 28 pd rt 270 repeat 180 [fd 0.5 lt 1] lt 30 fd 57 lt 120 fd 57 lt 120 pu fd 28 pd lt 90 stop]
+if :num = 4 [lt 90 pu fd 28 pd rt 270 repeat 180 [fd 0.5 lt 1] lt 30 fd 57 lt 120 fd 57 lt 120 pu fd 28 pd lt 90 setfloodcolor [35 113 54] fill stop]
+if :num = 5 [snow 3 stop]
+if :num = 6 [rt 90 pu fd 12.5 rt 90 fd 12.5 pd repeat 4 [fd 25 rt 90 fd 25 rt 90 fd 25 lt 90] rt 90 pu fd 12.5 rt 90 fd 12.5 pd stop]
+if :num = 7 [pu lt 90 fd 33 lt 90 fd 25 lt 135 pd fd 40 lt 90 fd 40 rt 135 fd 20 rt 45 fd 20 lt 90 fd 20 rt 45 fd 20 ~
+		rt 135 fd 40 lt 90 fd 40 rt 135 fd 20 rt 45 fd 20 lt 90 fd 20 rt 45 fd 20 pu rt 90 fd 54 rt 90 fd 66 rt 90 lt 180 pd pu rt 180 fd 25 rt 90 fd 33 rt 90 stop]
+
+if :num = 8 [pd circle 35 circle 15 fill setfloodcolor [35 113 54] fill pd stop]
+if :num = 9 [pd circle 35 fill setfloodcolor [35 113 54] fill circle 15 setfloodcolor "white fill pd stop]
+if :num = 10 [pu rt 180 fd 30 rt 180 pd rt 30 fd 60 repeat 2 [lt 120 fd 60] lt 120 fd 20 rt 60 fd 20 repeat 2 [lt 120 fd 60] lt 120 fd 60 rt 180 fd 30 rt 90 pu fd 15 pd stop]
+if :num = 11 [lt 90 pu lt 90 fd 15 rt 90 fd 42.5 rt 90 pd repeat 2 [rt 45 fd 50] rt 135 fd 50 rt 45 fd 50 pd pu rt 90 fd 17 rt 90 fd 44 lt 90 pd stop]
+if :num = 12 [snow 5 stop]
+end
+
+to pole
+fullscreen
+setfloodcolor [35 113 54]
+fill
+setpensize 4
+pu
+fd 375
+lt 90 
+fd 375
+lt 90 
+pd
+repeat 6 [repeat 4 [card 1 pu fd 250 pd] pu lt 90 fd 150 rt 90 pd]
+pu
+lt 90 
+fd 100
+lt 90
+end
+
+to snow :n 
+make "a 60
+setpensize 1
+pu rt 60 bk :a / sqrt 3 lt 30 pd repeat 3 [coh :a :n rt 120] pu rt 30 fd :a/sqrt 3 lt 60 pd 
+setpensize 4
+end
+
+to tp2 :tmp
+pu
+setxy -525 + 150 * (item 1 :tmp) 625 - 250 * (item 2 :tmp)
+end
+
+to tpshka :rad :stolb
+pu
+setxy -525+:rad*150 625-:stolb*250
+end
+
+to unk :list :tmp
+output or ((item 1 :tmp) <> (item 1 :list)) ((item 2 :tmp) <> (item 2 :list))
+end
+
+to videl :tmp
+tp2 :tmp
+card 2 
+end
+
+to yaichko :array :tmp :list
+make "tmpx -1 + item 2 :tmp
+make "tmpy -1 + item 1 :tmp
+make "listx -1 + item 2 :list
+make "listy -1 + item 1 :list
+make "tmpVal item :tmpy item :tmpx :array
+make "listVal item :listy item :listx :array
+ifelse :tmpVal = :listVal [setitem :tmpy item :tmpx :array 0 setitem :listy item :listx :array 0 del :tmp del :list ~
+			output :array] [hide :tmp hide :list output :array]
+end
+
+Make "a 60
+Make "array {{3 4 5 6 1 8}@0 {9 10 1 6 0 7}@0 {7 10 4 0 8 12}@0 {12 9 5 2 3 2}@0}@0
+Make "count 0
+Make "i 3
+Make "j 0
+Make "k 13
+Make "list [4 2]
+Make "listval 6
+Make "listx 1
+Make "listy 3
+Make "rad 3
+Make "returned [{{3 4 5 6 1 8}@0 {9 10 1 6 0 7}@0 {7 10 4 0 8 12}@0 {12 9 5 2 3 2}@0}@0 0 [4 2]]
+Make "stolb 2
+Make "tmp [3 2]
+Make "tmpval 1
+Make "tmpx 1
+Make "tmpy 2
+Make "xnum -43
+Make "ynum 107
